@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KeyboardMovement : MonoBehaviour
 {
-    public float speed = 3f;
+    public float speed = 2f;
     Vector3 startPosition;
     Vector3 targetPosition;
     bool isMoving;
