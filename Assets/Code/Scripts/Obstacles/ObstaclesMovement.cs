@@ -21,9 +21,9 @@ public class ObstaclesMovement : MonoBehaviour
 
     void RandomiseAngles()
     {
-        xAngle = Random.Range(0f, 0.1f);
-        yAngle = Random.Range(0f, 0.1f);
-        zAngle = Random.Range(0f, 0.1f);
+        xAngle = Random.Range(0f, 15f);
+        yAngle = Random.Range(0f, 15f);
+        zAngle = Random.Range(0f, 15f);
     }
 
     void MoveObstacles()
@@ -55,6 +55,6 @@ public class ObstaclesMovement : MonoBehaviour
 
     void SpinObstacles()
     {
-        transform.Rotate(xAngle, yAngle, zAngle, Space.Self);
+        transform.Rotate(xAngle * Time.deltaTime, yAngle * Time.deltaTime, zAngle * Time.deltaTime, Space.Self);
     }
 }
