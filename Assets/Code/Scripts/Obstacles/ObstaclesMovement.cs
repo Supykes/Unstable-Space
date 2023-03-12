@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class ObstaclesMovement : MonoBehaviour
 {
+    public GameObject player;
+    const int obstaclesCount = 3;
+    GameObject[] children = new GameObject[obstaclesCount];
     float speed = 2f;
     Vector3 startPosition;
     Vector3 targetPosition;
-    bool isMoving;
-    float xAngle, yAngle, zAngle;
+    public bool isMoving { get; private set; }
+    float[,] randomAngles = new float[obstaclesCount, 3];
 
-    void Start()
+    void Awake()
     {
+        GetChildren();
         RandomiseAngles();
     }
 
@@ -19,11 +23,23 @@ public class ObstaclesMovement : MonoBehaviour
         SpinObstacles();
     }
 
+    void GetChildren()
+    {
+        for (int i = 0; i < obstaclesCount; i++)
+        {
+            children[i] = transform.GetChild(i).gameObject;
+        }
+    }
+
     void RandomiseAngles()
     {
-        xAngle = Random.Range(0f, 15f);
-        yAngle = Random.Range(0f, 15f);
-        zAngle = Random.Range(0f, 15f);
+        for (int i = 0; i < obstaclesCount; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                randomAngles[i, j] = Random.Range(0f, 15f);
+            }
+        }
     }
 
     void MoveObstacles()
@@ -44,7 +60,7 @@ public class ObstaclesMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown("w") || (Input.GetKeyDown("a") && GameManager.sidePosition != -3) || (Input.GetKeyDown("d") && GameManager.sidePosition != 3))
+        if (Input.GetKeyDown("w") || (Input.GetKeyDown("a") && player.transform.position.x != -6) || (Input.GetKeyDown("d") && player.transform.position.x != 6))
         {
             targetPosition = transform.position + (Vector3.back * 2);
             startPosition = transform.position;
@@ -55,6 +71,12 @@ public class ObstaclesMovement : MonoBehaviour
 
     void SpinObstacles()
     {
-        transform.Rotate(xAngle * Time.deltaTime, yAngle * Time.deltaTime, zAngle * Time.deltaTime, Space.Self);
+        for (int i = 0; i < obstaclesCount; i++)
+        {
+            if (children[i] != null)
+            {
+                children[i].transform.Rotate(randomAngles[i, 0] * Time.deltaTime, randomAngles[i, 1] * Time.deltaTime, randomAngles[i, 2] * Time.deltaTime, Space.Self);
+            }
+        }
     }
 }

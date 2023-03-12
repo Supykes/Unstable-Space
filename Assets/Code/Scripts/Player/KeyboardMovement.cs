@@ -5,7 +5,7 @@ public class KeyboardMovement : MonoBehaviour
     public float speed = 2f;
     Vector3 startPosition;
     Vector3 targetPosition;
-    bool isMoving;
+    public static bool isMoving;
 
     void Update()
     {
