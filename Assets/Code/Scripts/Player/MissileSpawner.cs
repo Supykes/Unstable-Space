@@ -6,19 +6,16 @@ public class MissileSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("f") && !ObstaclesMovement.isMoving)
         {
-            if (!KeyboardMovement.isMoving)
-            {
-                SpawnMissile();
-            }
+            SpawnMissile();
         }
     }
 
     void SpawnMissile()
     {
         Vector3 spawnPosition = transform.position + (Vector3.forward * 2);
-        
+
         GameObject missile = Instantiate(missileToSpawn, spawnPosition, missileToSpawn.transform.rotation);
         missile.SetActive(true);
     }

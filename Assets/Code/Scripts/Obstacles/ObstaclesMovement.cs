@@ -2,18 +2,22 @@ using UnityEngine;
 
 public class ObstaclesMovement : MonoBehaviour
 {
-    public GameObject player;
     const int obstaclesCount = 3;
-    GameObject[] children = new GameObject[obstaclesCount];
     float speed = 2f;
+    public GameObject player;
     Vector3 startPosition;
     Vector3 targetPosition;
-    public bool isMoving { get; private set; }
+    public static bool isMoving;
+    GameObject[] children = new GameObject[obstaclesCount];
     float[,] randomAngles = new float[obstaclesCount, 3];
 
     void Awake()
     {
         GetChildren();
+    }
+
+    void Start()
+    {
         RandomiseAngles();
     }
 
@@ -60,7 +64,7 @@ public class ObstaclesMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown("w") || (Input.GetKeyDown("a") && player.transform.position.x != -6) || (Input.GetKeyDown("d") && player.transform.position.x != 6))
+        if (Input.GetKeyDown("f") || Input.GetKeyDown("w") || (Input.GetKeyDown("a") && player.transform.position.x != -6) || (Input.GetKeyDown("d") && player.transform.position.x != 6))
         {
             targetPosition = transform.position + (Vector3.back * 2);
             startPosition = transform.position;

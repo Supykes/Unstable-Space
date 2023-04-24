@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class KeyboardMovement : MonoBehaviour
 {
-    public float speed = 2f;
+    float speed = 2f;
     Vector3 startPosition;
     Vector3 targetPosition;
-    public static bool isMoving;
+    bool isMoving;
 
     void Update()
     {
@@ -30,23 +30,19 @@ public class KeyboardMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown("a") && GameManager.sidePosition != -3)
+        if (Input.GetKeyDown("a") && transform.position.x != -6 && !ObstaclesMovement.isMoving)
         {
             targetPosition = transform.position + (Vector3.left * 2);
             startPosition = transform.position;
 
             isMoving = true;
-
-            GameManager.sidePosition--;
         }
-        else if (Input.GetKeyDown("d") && GameManager.sidePosition != 3)
+        else if (Input.GetKeyDown("d") && transform.position.x != 6 && !ObstaclesMovement.isMoving)
         {
             targetPosition = transform.position + (Vector3.right * 2);
             startPosition = transform.position;
 
             isMoving = true;
-
-            GameManager.sidePosition++;
         }
     }
 }
