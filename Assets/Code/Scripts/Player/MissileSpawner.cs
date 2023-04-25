@@ -6,9 +6,12 @@ public class MissileSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("f") && !ObstaclesMovement.isMoving)
+        if (GameManager.isInputEnabled)
         {
-            SpawnMissile();
+            if (Input.GetKeyDown("f") && !ObstaclesMovement.isMoving)
+            {
+                SpawnMissile();
+            }
         }
     }
 

@@ -6,13 +6,17 @@ public class MovesManager : MonoBehaviour
     public GameObject player;
     public TMP_Text movesLeftText;
     public TMP_Text distanceTravelledText;
+    public TMP_Text totalDistanceTravelledText;
     int movesLeft = 5;
     int distanceTravelled = 0;
 
     void Update()
     {
-        CountMovesLeft();
-        CountDistanceTravelled();
+        if (GameManager.isInputEnabled)
+        {
+            CountMovesLeft();
+            CountDistanceTravelled();
+        }
     }
 
     void CountMovesLeft()
@@ -39,5 +43,7 @@ public class MovesManager : MonoBehaviour
         }
 
         distanceTravelledText.text = "Distance travelled: " + distanceTravelled;
+
+        totalDistanceTravelledText.text = "Total distance travelled: " + distanceTravelled;
     }
 }

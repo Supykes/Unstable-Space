@@ -5,6 +5,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public TMP_Text healthText;
     public static int healthCount = 3;
+    public GameOverScreen gameOverScreen;
 
     void Update()
     {
@@ -15,9 +16,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthCount == 0)
         {
-            healthText.text = "Game Over";
+            gameOverScreen.ShowGameOverView();
 
-            return;
+            healthCount = 3;
         }
 
         healthText.text = "Health: " + healthCount;

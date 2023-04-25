@@ -10,7 +10,10 @@ public class ObstaclesMovement : MonoBehaviour
 
     void Update()
     {
-        MoveObstacles();
+        if (GameManager.isInputEnabled)
+        {
+            MoveObstacles();
+        }
     }
 
     void MoveObstacles()

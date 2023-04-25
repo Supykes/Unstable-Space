@@ -10,7 +10,10 @@ public class MissilesMovement : MonoBehaviour
 
     void Update()
     {
-        MoveMissiles();
+        if (GameManager.isInputEnabled)
+        {
+            MoveMissiles();
+        }
     }
 
     void MoveMissiles()
