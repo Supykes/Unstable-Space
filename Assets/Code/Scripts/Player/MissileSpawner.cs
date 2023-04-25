@@ -14,9 +14,10 @@ public class MissileSpawner : MonoBehaviour
 
     void SpawnMissile()
     {
-        Vector3 spawnPosition = transform.position + (Vector3.forward * 2);
+        Vector3 spawnPosition = transform.position;
 
         GameObject missile = Instantiate(missileToSpawn, spawnPosition, missileToSpawn.transform.rotation);
+        missile.transform.parent = GameObject.Find("Missiles").transform;
         missile.SetActive(true);
     }
 }

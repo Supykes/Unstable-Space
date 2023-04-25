@@ -6,10 +6,10 @@ public class ObstaclesCollision : MonoBehaviour
 
     void Update()
     {
-        CheckCollision();
+        CheckPlayerCollision();
     }
 
-    void CheckCollision()
+    void CheckPlayerCollision()
     {
         if ((player.transform.position.x == transform.position.x) && (transform.position.z == 0f))
         {

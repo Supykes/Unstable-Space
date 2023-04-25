@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObstaclesMovement : MonoBehaviour
+public class MissilesMovement : MonoBehaviour
 {
     float speed = 2f;
     public GameObject player;
@@ -10,10 +10,10 @@ public class ObstaclesMovement : MonoBehaviour
 
     void Update()
     {
-        MoveObstacles();
+        MoveMissiles();
     }
 
-    void MoveObstacles()
+    void MoveMissiles()
     {
         if (isMoving)
         {
@@ -33,7 +33,7 @@ public class ObstaclesMovement : MonoBehaviour
 
         if (Input.GetKeyDown("f") || Input.GetKeyDown("w") || (Input.GetKeyDown("a") && player.transform.position.x != -6) || (Input.GetKeyDown("d") && player.transform.position.x != 6))
         {
-            targetPosition = transform.position + (Vector3.back * 2);
+            targetPosition = transform.position + (Vector3.forward * 2);
             startPosition = transform.position;
 
             isMoving = true;
