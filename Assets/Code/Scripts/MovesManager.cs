@@ -32,7 +32,7 @@ public class MovesManager : MonoBehaviour
             movesLeft = 5;
         }
 
-        movesLeftText.text = "Moves left: " + movesLeft;
+        movesLeftText.text = "Moves left: <color=#DAA520>" + movesLeft + "</color>";
     }
 
     void CountDistanceTravelled()
@@ -42,7 +42,7 @@ public class MovesManager : MonoBehaviour
             distanceTravelled++;
         }
 
-        distanceTravelledText.text = "Distance travelled: " + distanceTravelled;
+        distanceTravelledText.text = "Distance travelled: <color=#E7DF22>" + distanceTravelled + "</color>";
 
         totalDistanceTravelledText.text = "Total distance travelled: " + distanceTravelled;
     }

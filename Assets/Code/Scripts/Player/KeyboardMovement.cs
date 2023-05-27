@@ -7,6 +7,11 @@ public class KeyboardMovement : MonoBehaviour
     Vector3 targetPosition;
     bool isMoving;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Update()
     {
         if (GameManager.isInputEnabled)

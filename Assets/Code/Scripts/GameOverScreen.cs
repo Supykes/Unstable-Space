@@ -8,6 +8,7 @@ public class GameOverScreen : MonoBehaviour
     public void ShowGameOverView()
     {
         GameManager.isInputEnabled = false;
+        Cursor.lockState = CursorLockMode.None;
 
         gameOverBackground.SetActive(true);
 
