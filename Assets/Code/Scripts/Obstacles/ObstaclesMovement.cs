@@ -4,7 +4,9 @@ public class ObstaclesMovement : MonoBehaviour
 {
     float speed = 2f;
     public GameObject player;
+    public GameObject movesManagerGameObject;
     MissileSpawner missileSpawner;
+    MovesManager movesManager;
     Vector3 startPosition;
     Vector3 targetPosition;
     public static bool isMoving;
@@ -12,6 +14,7 @@ public class ObstaclesMovement : MonoBehaviour
     void Start()
     {
         missileSpawner = player.GetComponent<MissileSpawner>();
+        movesManager = movesManagerGameObject.GetComponent<MovesManager>();
     }
 
     void Update()
@@ -44,7 +47,7 @@ public class ObstaclesMovement : MonoBehaviour
         {
             if (Input.GetKeyDown("f"))
             {
-                if (missileSpawner.missileLanes[(int)player.transform.position.x] != true)
+                if (missileSpawner.missileLanes[(int)player.transform.position.x] != true && movesManager.spacecraftStatuses[2] != true)
                 {
                     missileSpawner.missileLanes[(int)player.transform.position.x] = true;
 
@@ -54,7 +57,7 @@ public class ObstaclesMovement : MonoBehaviour
                     isMoving = true;
                 }
             }
-            else if (Input.GetKeyDown("w") || (Input.GetKeyDown("a") && player.transform.position.x != -4) || (Input.GetKeyDown("d") && player.transform.position.x != 4))
+            else if (Input.GetKeyDown("w") || (Input.GetKeyDown("a") && player.transform.position.x != -4 && movesManager.spacecraftStatuses[3] != true) || (Input.GetKeyDown("d") && player.transform.position.x != 4 && movesManager.spacecraftStatuses[3] != true))
             {
                 targetPosition = transform.position + (Vector3.back * 2);
                 startPosition = transform.position;

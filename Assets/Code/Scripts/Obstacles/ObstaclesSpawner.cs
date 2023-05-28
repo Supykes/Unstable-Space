@@ -8,7 +8,9 @@ public class ObstaclesSpawner : MonoBehaviour
     public GameObject smallAsteroid;
     public GameObject mediumAsteroid;
     public GameObject largeAsteroid;
+    public GameObject movesManagerGameObject;
     MissileSpawner missileSpawner;
+    MovesManager movesManager;
     GameObject[] obstacles = new GameObject[4];
     public static int randomObstacleIndex = -1;
     public static int randomXCoordinate;
@@ -18,6 +20,7 @@ public class ObstaclesSpawner : MonoBehaviour
     void Start()
     {
         missileSpawner = player.GetComponent<MissileSpawner>();
+        movesManager = movesManagerGameObject.GetComponent<MovesManager>();
 
         obstacles[0] = enemySpacecraft;
         obstacles[1] = smallAsteroid;
@@ -34,17 +37,19 @@ public class ObstaclesSpawner : MonoBehaviour
 
     void Update()
     {
-        GetRandomNumbers();
+        if (GameManager.isInputEnabled)
+        {
+            GetRandomNumbers();
 
-        SpawnRandomObstacle();
+            SpawnRandomObstacle();
+        }
     }
 
     void GetRandomNumbers()
     {
         if (missileSpawner.missileLanes.ContainsKey((int)player.transform.position.x))
         {
-            if (((Input.GetKeyDown("f") && missileSpawner.missileLanes[(int)player.transform.position.x] != true) || Input.GetKeyDown("w") || (Input.GetKeyDown("a") &&
-            player.transform.position.x != -4) || (Input.GetKeyDown("d") && player.transform.position.x != 4)) && !ObstaclesMovement.isMoving)
+            if (((Input.GetKeyDown("f") && missileSpawner.missileLanes[(int)player.transform.position.x] != true && movesManager.spacecraftStatuses[2] != true) || Input.GetKeyDown("w") || (Input.GetKeyDown("a") && player.transform.position.x != -4 && movesManager.spacecraftStatuses[3] != true) || (Input.GetKeyDown("d") && player.transform.position.x != 4 && movesManager.spacecraftStatuses[3] != true)) && !ObstaclesMovement.isMoving)
             {
                 GetRandomXCoordinate();
                 GetRandomObstacleIndex();

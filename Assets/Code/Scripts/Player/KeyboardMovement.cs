@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class KeyboardMovement : MonoBehaviour
 {
+    public GameObject movesManagerGameObject;
+    MovesManager movesManager;
     float speed = 2f;
     Vector3 startPosition;
     Vector3 targetPosition;
@@ -10,6 +12,8 @@ public class KeyboardMovement : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        movesManager = movesManagerGameObject.GetComponent<MovesManager>();
     }
 
     void Update()
@@ -24,30 +28,69 @@ public class KeyboardMovement : MonoBehaviour
     {
         if (isMoving)
         {
-            if (Vector3.Distance(startPosition, transform.position) > 2f)
+            if (movesManager.spacecraftStatuses[4] != true || ((startPosition.x == -2f && targetPosition.x == -4f) || (startPosition.x == 2f && targetPosition.x == 4f)))
             {
-                transform.position = targetPosition;
+                if (Vector3.Distance(startPosition, transform.position) > 2f)
+                {
+                    transform.position = targetPosition;
 
-                isMoving = false;
+                    isMoving = false;
 
-                return;
+                    return;
+                }
             }
+            else
+            {
+                if (Vector3.Distance(startPosition, transform.position) > 4f)
+                {
+                    transform.position = targetPosition;
+
+                    isMoving = false;
+
+                    return;
+                }
+            }
+
 
             transform.position += (targetPosition - startPosition) * speed * Time.deltaTime;
 
             return;
         }
 
-        if (Input.GetKeyDown("a") && transform.position.x != -4 && !ObstaclesMovement.isMoving)
+        if (Input.GetKeyDown("a") && transform.position.x != -4 && !ObstaclesMovement.isMoving && movesManager.spacecraftStatuses[3] != true)
         {
-            targetPosition = transform.position + (Vector3.left * 2);
+            if (movesManager.spacecraftStatuses[4] != true)
+            {
+                targetPosition = transform.position + (Vector3.left * 2);
+            }
+            else if (movesManager.spacecraftStatuses[4] == true && transform.position.x != -2)
+            {
+                targetPosition = transform.position + (Vector3.left * 4);
+            }
+            else if (movesManager.spacecraftStatuses[4] == true && transform.position.x == -2)
+            {
+                targetPosition = transform.position + (Vector3.left * 2);
+            }
+
             startPosition = transform.position;
 
             isMoving = true;
         }
-        else if (Input.GetKeyDown("d") && transform.position.x != 4 && !ObstaclesMovement.isMoving)
+        else if (Input.GetKeyDown("d") && transform.position.x != 4 && !ObstaclesMovement.isMoving && movesManager.spacecraftStatuses[3] != true)
         {
-            targetPosition = transform.position + (Vector3.right * 2);
+            if (movesManager.spacecraftStatuses[4] != true)
+            {
+                targetPosition = transform.position + (Vector3.right * 2);
+            }
+            else if (movesManager.spacecraftStatuses[4] == true && transform.position.x != 2)
+            {
+                targetPosition = transform.position + (Vector3.right * 4);
+            }
+            else if (movesManager.spacecraftStatuses[4] == true && transform.position.x == 2)
+            {
+                targetPosition = transform.position + (Vector3.right * 2);
+            }
+
             startPosition = transform.position;
 
             isMoving = true;
