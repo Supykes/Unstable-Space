@@ -3,6 +3,7 @@ using UnityEngine;
 public class ObstaclesCollision : MonoBehaviour
 {
     public GameObject player;
+    public GameObject smallAsteroid;
     PlayerHealth playerHealth;
 
     void Start()
@@ -10,19 +11,26 @@ public class ObstaclesCollision : MonoBehaviour
         playerHealth = player.GetComponent<PlayerHealth>();
     }
 
-    void Update()
+    void OnTriggerEnter(Collider collider)
     {
-        CheckPlayerCollision();
-    }
-
-    void CheckPlayerCollision()
-    {
-        if ((player.transform.position.x == transform.position.x) && (transform.position.z == 0f))
+        if (collider.gameObject.transform.tag == "Player")
         {
             PlayerHealth.healthCount--;
             playerHealth.RemoveHealthSquare();
 
             Destroy(gameObject);
+        }
+        else if (collider.gameObject.transform.tag == "Missile")
+        {
+            if (gameObject.transform.tag == "Large Asteroid")
+            {
+                GameObject spawnedSmallAsteroid = Instantiate(smallAsteroid, gameObject.transform.position, gameObject.transform.rotation);
+                spawnedSmallAsteroid.transform.parent = GameObject.Find("Obstacles").transform;
+                spawnedSmallAsteroid.SetActive(true);
+            }
+
+            Destroy(gameObject);
+            Destroy(collider.gameObject);
         }
     }
 }

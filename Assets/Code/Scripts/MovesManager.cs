@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using TMPro;
 
 public class MovesManager : MonoBehaviour
@@ -7,8 +8,14 @@ public class MovesManager : MonoBehaviour
     public TMP_Text movesLeftText;
     public TMP_Text distanceTravelledText;
     public TMP_Text totalDistanceTravelledText;
+    MissileSpawner missileSpawner;
     int movesLeft = 5;
     int distanceTravelled = 0;
+
+    void Start()
+    {
+        missileSpawner = player.GetComponent<MissileSpawner>();
+    }
 
     void Update()
     {
@@ -21,10 +28,13 @@ public class MovesManager : MonoBehaviour
 
     void CountMovesLeft()
     {
-        if ((Input.GetKeyDown("f") || Input.GetKeyDown("w") || (Input.GetKeyDown("a") && player.transform.position.x != -6) || (Input.GetKeyDown("d") &&
-        player.transform.position.x != 6)) && !ObstaclesMovement.isMoving)
+        if (missileSpawner.missileLanes.ContainsKey((int)player.transform.position.x))
         {
-            movesLeft--;
+            if (((Input.GetKeyDown("f") && missileSpawner.missileLanes[(int)player.transform.position.x] != true) || Input.GetKeyDown("w") ||
+            (Input.GetKeyDown("a") && player.transform.position.x != -4) || (Input.GetKeyDown("d") && player.transform.position.x != 4)) && !ObstaclesMovement.isMoving)
+            {
+                movesLeft--;
+            }
         }
 
         if (movesLeft == 0)

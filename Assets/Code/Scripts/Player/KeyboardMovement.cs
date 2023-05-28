@@ -38,14 +38,14 @@ public class KeyboardMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown("a") && transform.position.x != -6 && !ObstaclesMovement.isMoving)
+        if (Input.GetKeyDown("a") && transform.position.x != -4 && !ObstaclesMovement.isMoving)
         {
             targetPosition = transform.position + (Vector3.left * 2);
             startPosition = transform.position;
 
             isMoving = true;
         }
-        else if (Input.GetKeyDown("d") && transform.position.x != 6 && !ObstaclesMovement.isMoving)
+        else if (Input.GetKeyDown("d") && transform.position.x != 4 && !ObstaclesMovement.isMoving)
         {
             targetPosition = transform.position + (Vector3.right * 2);
             startPosition = transform.position;
