@@ -76,6 +76,10 @@ public class MovesManager : MonoBehaviour
     {
         switch (randomStatusIndex)
         {
+            case -1:
+                StartCoroutine(WaitToChangeStatus(0.6f, 0));
+
+                break;
             case 0:
                 StartCoroutine(WaitToChangeStatus(0.5f, 0));
 
@@ -106,11 +110,9 @@ public class MovesManager : MonoBehaviour
 
                 break;
             case 4:
-                StartCoroutine(WaitToChangeStatus(0.5f, 4));
+                StartCoroutine(WaitToChangeStatus(0.6f, 4));
 
                 currentStatusText.text = "<color=#DAA520>Current status:</color>\n<color=#FF0000><size=30><i>Control system malfunction!</i></size></color>";
-
-                previousRandomStatusIndex = randomStatusIndex;
 
                 break;
         }

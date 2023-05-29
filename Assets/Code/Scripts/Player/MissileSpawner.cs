@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class MissileSpawner : MonoBehaviour
@@ -24,7 +25,7 @@ public class MissileSpawner : MonoBehaviour
         {
             if (missileLanes.ContainsKey((int)transform.position.x))
             {
-                if (Input.GetKeyDown("f") && !ObstaclesMovement.isMoving && missileLanes[(int)transform.position.x] == false && movesManager.spacecraftStatuses[2] != true)
+                if (Input.GetKeyDown("f") && missileLanes[(int)transform.position.x] != true && movesManager.spacecraftStatuses[2] != true && !ObstaclesMovement.isMoving)
                 {
                     SpawnMissile();
                 }
@@ -42,5 +43,14 @@ public class MissileSpawner : MonoBehaviour
         missile.SetActive(true);
 
         missile.GetComponent<MissileLane>().xCoordinate = xCoordinate;
+
+        StartCoroutine(WaitToMarkMissileLane(0.001f, xCoordinate));
+    }
+
+    IEnumerator WaitToMarkMissileLane(float delayTime, int xCoordinate)
+    {
+        yield return new WaitForSeconds(delayTime);
+
+        missileLanes[xCoordinate] = true;
     }
 }

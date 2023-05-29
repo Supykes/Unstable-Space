@@ -5,9 +5,14 @@ public class PlayerHealth : MonoBehaviour
 {
     public Sprite healthSquare;
     public GameObject healthText;
-    public static int healthCount = 3;
+    public static int healthCount;
     public GameOverScreen gameOverScreen;
     float previousHealthSquarePosition = 60f;
+
+    void Awake()
+    {
+        healthCount = 3;
+    }
 
     void Start()
     {
@@ -27,8 +32,6 @@ public class PlayerHealth : MonoBehaviour
         if (healthCount == 0)
         {
             gameOverScreen.ShowGameOverView();
-
-            healthCount = 3;
         }
     }
 

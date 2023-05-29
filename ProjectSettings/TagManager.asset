@@ -8,6 +8,7 @@ TagManager:
   - Missile
   - Large Asteroid
   - Asteroid
+  - Enemy Missile
   layers:
   - Default
   - TransparentFX

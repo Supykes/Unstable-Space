@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 public class ObstaclesDestroyer : MonoBehaviour
 {
-    public GameObject obstacles;
+    public GameObject obstaclesSpawner;
     Dictionary<int, bool> enemySpacecraftLanes;
 
     void Start()
     {
-        enemySpacecraftLanes = obstacles.transform.GetComponent<ObstaclesSpawner>().enemySpacecraftLanes;
+        enemySpacecraftLanes = obstaclesSpawner.transform.GetComponent<ObstaclesSpawner>().enemySpacecraftLanes;
     }
 
     void OnTriggerEnter(Collider obstacle)

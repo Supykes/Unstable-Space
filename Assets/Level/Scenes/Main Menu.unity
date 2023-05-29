@@ -865,13 +865,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' Controls:
+  m_text: ' <color=#008000>Controls:</color>
+
+    <size=30>W - Move forward
+
+    A
+    - Move left
+
+    D - Move right
+
+    F - Fire missile</size>
 
 
-
-
-
-    Goal: travel as far as you can!'
+    <color=#FFD700>Goal:</color>
+    travel as far as you can!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba98273b8b3fcfe47a1569b9efa393a1, type: 2}
   m_sharedMaterial: {fileID: 2304391247016507747, guid: ba98273b8b3fcfe47a1569b9efa393a1, type: 2}
@@ -1242,7 +1249,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 450, y: -300}
-  m_SizeDelta: {x: 650, y: 250}
+  m_SizeDelta: {x: 650, y: 280}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1973263604
 MonoBehaviour:

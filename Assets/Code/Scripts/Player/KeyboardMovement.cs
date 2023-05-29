@@ -57,7 +57,7 @@ public class KeyboardMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown("a") && transform.position.x != -4 && !ObstaclesMovement.isMoving && movesManager.spacecraftStatuses[3] != true)
+        if (Input.GetKeyDown("a") && transform.position.x != -4 && movesManager.spacecraftStatuses[3] != true && !ObstaclesMovement.isMoving)
         {
             if (movesManager.spacecraftStatuses[4] != true)
             {
@@ -76,7 +76,7 @@ public class KeyboardMovement : MonoBehaviour
 
             isMoving = true;
         }
-        else if (Input.GetKeyDown("d") && transform.position.x != 4 && !ObstaclesMovement.isMoving && movesManager.spacecraftStatuses[3] != true)
+        else if (Input.GetKeyDown("d") && transform.position.x != 4 && movesManager.spacecraftStatuses[3] != true && !ObstaclesMovement.isMoving)
         {
             if (movesManager.spacecraftStatuses[4] != true)
             {
