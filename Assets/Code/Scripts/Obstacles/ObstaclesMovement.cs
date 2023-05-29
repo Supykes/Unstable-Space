@@ -63,9 +63,7 @@ public class ObstaclesMovement : MonoBehaviour
                 startPosition = transform.position;
 
                 isMoving = true;
-
             }
-
         }
     }
 }
