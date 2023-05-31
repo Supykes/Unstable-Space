@@ -77,17 +77,17 @@ public class MovesManager : MonoBehaviour
         switch (randomStatusIndex)
         {
             case -1:
-                StartCoroutine(WaitToChangeStatus(0.6f, 0));
+                StartCoroutine(WaitToChangeStatus(0.6f, 0, 1));
 
                 break;
             case 0:
-                StartCoroutine(WaitToChangeStatus(0.5f, 0));
+                StartCoroutine(WaitToChangeStatus(0.6f, 0, randomStatusIndex));
 
                 currentStatusText.text = "<color=#DAA520>Current status:</color>\n<color=#008000><size=30><i>All systems are operational!</i></size></color>";
 
                 break;
             case 1:
-                StartCoroutine(WaitToChangeStatus(0.5f, 1));
+                StartCoroutine(WaitToChangeStatus(0.6f, 1, randomStatusIndex));
 
                 currentStatusText.text = "<color=#DAA520>Current status:</color>\n<color=#008000><size=30><i>Additional health received!</i></size></color>";
 
@@ -98,19 +98,19 @@ public class MovesManager : MonoBehaviour
 
                 break;
             case 2:
-                StartCoroutine(WaitToChangeStatus(0.5f, 2));
+                StartCoroutine(WaitToChangeStatus(0.6f, 2, randomStatusIndex));
 
                 currentStatusText.text = "<color=#DAA520>Current status:</color>\n<color=#FF0000><size=30><i>Weapon system failure!</i></size></color>";
 
                 break;
             case 3:
-                StartCoroutine(WaitToChangeStatus(0.5f, 3));
+                StartCoroutine(WaitToChangeStatus(0.6f, 3, randomStatusIndex));
 
                 currentStatusText.text = "<color=#DAA520>Current status:</color>\n<color=#FF0000><size=30><i>Control system failure!</i></size></color>";
 
                 break;
             case 4:
-                StartCoroutine(WaitToChangeStatus(0.6f, 4));
+                StartCoroutine(WaitToChangeStatus(0.6f, 4, randomStatusIndex));
 
                 currentStatusText.text = "<color=#DAA520>Current status:</color>\n<color=#FF0000><size=30><i>Control system malfunction!</i></size></color>";
 
@@ -118,7 +118,7 @@ public class MovesManager : MonoBehaviour
         }
     }
 
-    IEnumerator WaitToChangeStatus(float delayTime, int statusIndex)
+    IEnumerator WaitToChangeStatus(float delayTime, int statusIndex, int randomStatusIndex)
     {
         yield return new WaitForSeconds(delayTime);
 

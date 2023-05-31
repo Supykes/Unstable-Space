@@ -7,7 +7,10 @@ public class MissilesDestroyer : MonoBehaviour
 
     void Update()
     {
-        ClearMissileLanes();
+        for (int i = -4; i < 5; i += 2)
+        {
+            print(i + " " + missileSpawner.missileLanes[i]);
+        }
     }
 
     void Start()
@@ -24,19 +27,6 @@ public class MissilesDestroyer : MonoBehaviour
             missileSpawner.missileLanes[missileXCoordinate] = false;
 
             Destroy(collider.gameObject);
-        }
-    }
-
-    void ClearMissileLanes()
-    {
-        for (int i = -4; i < 5; i += 2)
-        {
-            GameObject missile = GameObject.Find("Missile(Clone)");
-
-            if (missile && missile.transform.position.x != i)
-            {
-                missileSpawner.missileLanes[i] = false;
-            }
         }
     }
 }

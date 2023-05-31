@@ -20,7 +20,7 @@ public class ObstaclesCollision : MonoBehaviour
 
             Destroy(gameObject);
         }
-        else if (collider.gameObject.transform.tag == "Missile")
+        else if (collider.gameObject.transform.tag == "Missile" || collider.gameObject.transform.tag == "Enemy Missile")
         {
             if (gameObject.transform.tag == "Large Asteroid")
             {
@@ -28,9 +28,6 @@ public class ObstaclesCollision : MonoBehaviour
                 spawnedSmallAsteroid.transform.parent = GameObject.Find("Obstacles").transform;
                 spawnedSmallAsteroid.SetActive(true);
             }
-
-            Destroy(gameObject);
-            Destroy(collider.gameObject);
         }
     }
 }

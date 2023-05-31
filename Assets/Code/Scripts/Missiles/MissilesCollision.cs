@@ -23,15 +23,15 @@ public class MissilesCollision : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (obstacle.gameObject.transform.tag == "Missile" || obstacle.gameObject.transform.tag == "Enemy Spacecraft" || obstacle.gameObject.transform.tag == "Asteroid" ||
+        if (obstacle.gameObject.transform.tag == "Enemy Missile" || obstacle.gameObject.transform.tag == "Enemy Spacecraft" || obstacle.gameObject.transform.tag == "Asteroid" ||
         obstacle.gameObject.transform.tag == "Large Asteroid")
         {
             int missileXCoordinate = gameObject.GetComponent<MissileLane>().xCoordinate;
 
             missileLanes[missileXCoordinate] = false;
 
-            Destroy(gameObject);
             Destroy(obstacle.gameObject);
+            Destroy(gameObject);
         }
     }
 }
