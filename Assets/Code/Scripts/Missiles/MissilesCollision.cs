@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class MissilesCollision : MonoBehaviour
@@ -15,6 +16,13 @@ public class MissilesCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider obstacle)
     {
+        StartCoroutine(WaitToMarkMissileLane(0.002f, obstacle));
+    }
+
+    IEnumerator WaitToMarkMissileLane(float delayTime, Collider obstacle)
+    {
+        yield return new WaitForSeconds(delayTime);
+
         if (obstacle.gameObject.transform.tag == "Player")
         {
             PlayerHealth.healthCount--;
