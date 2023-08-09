@@ -4,6 +4,7 @@ public class ObstaclesCollision : MonoBehaviour
 {
     public GameObject player;
     public GameObject smallAsteroid;
+    public GameObject explosionSystem;
     PlayerHealth playerHealth;
 
     void Start()
@@ -19,6 +20,8 @@ public class ObstaclesCollision : MonoBehaviour
             playerHealth.RemoveHealthSquare();
 
             Destroy(gameObject);
+
+            PlayExplosion(collider);
         }
         else if (collider.gameObject.transform.tag == "Missile" || collider.gameObject.transform.tag == "Enemy Missile")
         {
@@ -29,5 +32,13 @@ public class ObstaclesCollision : MonoBehaviour
                 spawnedSmallAsteroid.SetActive(true);
             }
         }
+    }
+
+    void PlayExplosion(Collider collider)
+    {
+        GameObject explosion = Instantiate(explosionSystem, collider.gameObject.transform.position, explosionSystem.transform.rotation);
+        explosion.SetActive(true);
+
+        explosion.GetComponent<ParticleSystem>().Play();
     }
 }

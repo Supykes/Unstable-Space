@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class MissilesCollision : MonoBehaviour
 {
     public GameObject player;
+    public GameObject explosionSystem;
     PlayerHealth playerHealth;
     Dictionary<int, bool> missileLanes;
 
@@ -41,5 +42,15 @@ public class MissilesCollision : MonoBehaviour
             Destroy(obstacle.gameObject);
             Destroy(gameObject);
         }
+
+        PlayExplosion(obstacle);
+    }
+
+    void PlayExplosion(Collider obstacle)
+    {
+        GameObject explosion = Instantiate(explosionSystem, obstacle.gameObject.transform.position, explosionSystem.transform.rotation);
+        explosion.SetActive(true);
+
+        explosion.GetComponent<ParticleSystem>().Play();
     }
 }
