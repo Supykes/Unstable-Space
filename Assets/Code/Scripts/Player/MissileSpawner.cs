@@ -8,6 +8,12 @@ public class MissileSpawner : MonoBehaviour
     public GameObject movesManagerGameObject;
     MovesManager movesManager;
     public Dictionary<int, bool> missileLanes = new Dictionary<int, bool>();
+    public static int missilesCount;
+
+    void Awake()
+    {
+        missilesCount = 3;
+    }
 
     void Start()
     {
@@ -25,7 +31,8 @@ public class MissileSpawner : MonoBehaviour
         {
             if (missileLanes.ContainsKey((int)transform.position.x))
             {
-                if (Input.GetKeyDown("f") && missileLanes[(int)transform.position.x] != true && movesManager.spacecraftStatuses[2] != true && !ObstaclesMovement.isMoving)
+                if (Input.GetKeyDown("f") && missileLanes[(int)transform.position.x] != true && movesManager.spacecraftStatuses[2] != true && missilesCount != 0 &&
+                !ObstaclesMovement.isMoving)
                 {
                     SpawnMissile();
                 }
@@ -52,5 +59,7 @@ public class MissileSpawner : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
 
         missileLanes[xCoordinate] = true;
+
+        missilesCount--;
     }
 }

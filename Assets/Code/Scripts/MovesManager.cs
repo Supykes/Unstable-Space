@@ -33,8 +33,9 @@ public class MovesManager : MonoBehaviour
     {
         if (missileSpawner.missileLanes.ContainsKey((int)player.transform.position.x))
         {
-            if (((Input.GetKeyDown("f") && missileSpawner.missileLanes[(int)player.transform.position.x] != true && spacecraftStatuses[2] != true) || Input.GetKeyDown("w") ||
-            (Input.GetKeyDown("a") && player.transform.position.x != -4 && spacecraftStatuses[3] != true) || (Input.GetKeyDown("d") && player.transform.position.x != 4 && spacecraftStatuses[3] != true)) && !ObstaclesMovement.isMoving && GameManager.isInputEnabled)
+            if (((Input.GetKeyDown("f") && missileSpawner.missileLanes[(int)player.transform.position.x] != true && spacecraftStatuses[2] != true && MissileSpawner.missilesCount != 0) ||
+            Input.GetKeyDown("w") || (Input.GetKeyDown("a") && player.transform.position.x != -4 && spacecraftStatuses[3] != true) || (Input.GetKeyDown("d") && player.transform.position.x != 4 && spacecraftStatuses[3] != true)) &&
+            !ObstaclesMovement.isMoving && GameManager.isInputEnabled)
             {
                 movesLeft--;
             }
@@ -45,6 +46,8 @@ public class MovesManager : MonoBehaviour
             movesLeft = 5;
 
             GetRandomStatusIndex();
+
+            MissileSpawner.missilesCount = 3;
         }
 
         movesLeftText.text = "Moves left: <color=#DAA520>" + movesLeft + "</color>";

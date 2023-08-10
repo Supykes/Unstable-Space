@@ -10519,8 +10519,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: " <color=#008000>Controls:</color>\n<size=30>W \u2013 Move forward\nA \u2013
-    Move left\nD \u2013 Move right\nF \u2013 Fire missile</size>\n\n<color=#FFD700>Goal:</color>
-    travel as far as you can!"
+    Move left\nD \u2013 Move right\nF \u2013 Fire missile (<color=#FF0000>3x</color>
+    per <color=#FF0000>5 moves</color>)</size>\n\n<color=#FFD700>Goal:</color> travel
+    as far as you can!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba98273b8b3fcfe47a1569b9efa393a1, type: 2}
   m_sharedMaterial: {fileID: 2304391247016507747, guid: ba98273b8b3fcfe47a1569b9efa393a1, type: 2}
