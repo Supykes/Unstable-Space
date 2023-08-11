@@ -9,7 +9,10 @@ public class EnemySpacecraftBehaviour : MonoBehaviour
 
     void Update()
     {
-        GetRandomIndex();
+        if (GameManager.isInputEnabled)
+        {
+            GetRandomIndex();
+        }
 
         ControlEnemySpacecraftBehaviour();
 
